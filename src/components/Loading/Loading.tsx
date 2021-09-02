@@ -3,7 +3,7 @@ import { CircularProgress } from "@material-ui/core";
 import { Trans, useTranslation } from "react-i18next";
 
 const LoadingPage: React.FC = () => {
-  useTranslation();
+  jest.mock('react-i18next', () => ({useTranslation(){}}));
 
   return (
     <div className="CircularWrapper">

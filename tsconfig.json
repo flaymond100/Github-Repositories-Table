@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "config/test-setup.js", "config/fileMock.js"  ]
 }
