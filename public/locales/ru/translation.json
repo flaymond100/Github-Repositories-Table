@@ -1,0 +1,25 @@
+{
+    "title": "Github Таблица",
+    "home-btn" : "Домой",
+    "loading": "Загрузка...",
+    "lang-btn": "ENG",
+    "table":{
+        "row":{
+            "name": "Репозиторий",
+            "owner": "Пользователь",
+            "description": "Описание",
+            "lang": "Язык",
+            "topics": "Топик",
+            "stars": "Звёзды"
+        }
+    },
+    "search-field": "Поиск",
+    "repo-card":{
+        "fork": "Ответвлений",
+        "commit-comments": "Комментариев коммитов",
+        "languages": "Языки",
+        "repositiories": "Репозитии",
+        "stars": "Звёзд"
+    },
+    "labelRowsPerPage": "Репозиториев на странице"
+}
