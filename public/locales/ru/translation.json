@@ -1,8 +1,8 @@
 {
     "title": "Github Таблица",
-    "home-btn" : "Домой",
+    "homeButton" : "Домой",
     "loading": "Загрузка...",
-    "lang-btn": "ENG",
+    "languageButton": "ENG",
     "table":{
         "row":{
             "name": "Репозиторий",
@@ -13,10 +13,10 @@
             "stars": "Звёзды"
         }
     },
-    "search-field": "Поиск",
-    "repo-card":{
+    "searchField": "Поиск",
+    "repositoryCard":{
         "fork": "Ответвлений",
-        "commit-comments": "Комментариев коммитов",
+        "commitComments": "Комментариев коммитов",
         "languages": "Языки",
         "repositiories": "Репозитии",
         "stars": "Звёзд"

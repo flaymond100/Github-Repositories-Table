@@ -6,7 +6,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { useLazyQuery } from "@apollo/client";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import BasicPagination from "../Pagination/Pagination";
 import "../../index.scss";
 import TableBodyRender from "./TableBody";
@@ -34,7 +34,7 @@ const TableBoard: React.FC = () => {
   const [afterQuery, setAfterQuery] = useState<null | string | undefined>(null);
   const [searchQuery, setSearchQuery] = useState<string>("is:public");
 
-  useTranslation();
+  const [translation] = useTranslation();
 
   const columns = [
     { id: "name", label: "Name", align: "center", minWidth: 140 },
@@ -160,9 +160,7 @@ const TableBoard: React.FC = () => {
                   key={column.id}
                   style={{ minWidth: column.minWidth }}
                 >
-                  <h1>
-                    <Trans i18nKey={landReq + column.id} />
-                  </h1>
+                  <h1>{translation(landReq + column.id)}</h1>
                   <SearchField
                     searchTerm={searchTerm}
                     searchId={searchId}

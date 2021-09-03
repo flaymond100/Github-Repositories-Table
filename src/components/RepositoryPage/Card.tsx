@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import githubLogo from "../../assets/github-logo.png";
 import { RepositoryData } from "./interface";
 import styles from "./RepositoryPage.module.scss";
 
 const Card: FC<RepositoryData> = ({ data }) => {
-  useTranslation();
+  const [translation] = useTranslation();
 
   return (
     <div className={styles.cardSection}>
@@ -16,17 +16,11 @@ const Card: FC<RepositoryData> = ({ data }) => {
           {data.repository.url.slice(8)}
         </a>
       </p>
-      <h3>
-        <Trans i18nKey="repo-card.fork" />
-      </h3>
+      <h3>{translation("repositoryCard.fork")}</h3>
       <p>{data.repository.forkCount}</p>
-      <h3>
-        <Trans i18nKey="repo-card.commit-comments" />
-      </h3>
+      <h3>{translation("repositoryCard.commitComments")}</h3>
       <p>{data.repository.commitComments.totalCount}</p>
-      <h3>
-        <Trans i18nKey="repo-card.languages" />
-      </h3>
+      <h3>{translation("repositoryCard.languages")}</h3>
       <ul>
         {data.repository.languages.nodes.length > 0
           ? data.repository.languages.nodes.map((lang) => {
@@ -41,13 +35,9 @@ const Card: FC<RepositoryData> = ({ data }) => {
             })
           : "Not mentioned"}
       </ul>
-      <h3>
-        <Trans i18nKey="repo-card.repositiories" />
-      </h3>
+      <h3>{translation("repositoryCard.repositiories")}</h3>
       <p>{data.repository.owner.repositories.totalCount}</p>
-      <h3>
-        <Trans i18nKey="repo-card.stars" />
-      </h3>
+      <h3>{translation("repositoryCard.stars")}</h3>
       <p>{data.repository.stargazerCount}</p>
     </div>
   );

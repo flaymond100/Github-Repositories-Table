@@ -6,7 +6,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext(() => {
-  const GitHubToken = "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";
+  const GitHubToken = "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";
 
   return {
     headers: {

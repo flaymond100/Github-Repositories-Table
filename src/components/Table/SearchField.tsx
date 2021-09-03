@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { TextField } from "@material-ui/core";
-import { Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { SearchFieldProps } from "./interface";
 
 const SearchField: FC<SearchFieldProps> = ({
@@ -9,12 +9,14 @@ const SearchField: FC<SearchFieldProps> = ({
   searchTerm,
   searchId,
 }) => {
+  const [translation] = useTranslation();
+
   return id === "name" || id === "description" ? (
     <TextField
       size="small"
       id="outlined-search"
       defaultValue={searchId === id ? searchTerm : ""}
-      label={<Trans i18nKey="search-field" />}
+      label={translation("searchField")}
       type="search"
       variant="outlined"
       onChange={(e) => handleSearch(id, e)}
