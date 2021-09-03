@@ -5,7 +5,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import styles from "./Header.module.scss";
 
 const useStyles = makeStyles(() =>
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() =>
 
 const Header: FC = () => {
   const classes = useStyles();
-  const { i18n } = useTranslation();
+  const [translation, i18n] = useTranslation();
   const [lang, setCurrentLang] = useState<string>("en");
 
   const changeLanguage = (currentLang: string) => {
@@ -38,8 +38,7 @@ const Header: FC = () => {
           <Toolbar className={styles.MuiToolbar}>
             <Link to="/">
               <Button size="large" color="inherit">
-                {" "}
-                <Trans i18nKey="home-btn" />{" "}
+                <p>{translation("homeButton")}</p>
               </Button>
             </Link>
             <div className={styles.headerBtnName}>
@@ -49,11 +48,10 @@ const Header: FC = () => {
                 color="secondary"
                 variant="contained"
               >
-                <Trans i18nKey="lang-btn" />
+                <span>{translation("languageButton")}</span>
               </Button>
               <Typography variant="h6" className={classes.title}>
-                {" "}
-                <Trans i18nKey="title" />{" "}
+                <span>{translation("title")}</span>
               </Typography>
             </div>
           </Toolbar>

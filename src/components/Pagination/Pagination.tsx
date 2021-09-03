@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import TablePagination from "@material-ui/core/TablePagination";
-import { Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import PagindationProps from "./interface";
 
 const useStyles = makeStyles((theme) =>
@@ -22,6 +22,9 @@ const BasicPagination: FC<PagindationProps> = ({
   totalRepos,
 }) => {
   const classes = useStyles();
+
+  const [translation] = useTranslation();
+
   const handlePageChange = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     pageNumber: number
@@ -39,7 +42,7 @@ const BasicPagination: FC<PagindationProps> = ({
   return (
     <div className={classes.root}>
       <TablePagination
-        labelRowsPerPage={<Trans i18nKey="labelRowsPerPage" />}
+        labelRowsPerPage={<p> {translation("labelRowsPerPage")} </p>}
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
         count={totalRepos}

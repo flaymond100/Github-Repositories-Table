@@ -1,8 +1,8 @@
 {
     "title": "Github Table",
-    "home-btn" : "Home",
+    "homeButton" : "Home",
     "loading": "Loading...",
-    "lang-btn": "RU",
+    "languageButton": "RU",
     "table":{
         "row":{
             "name": "Name",
@@ -13,10 +13,10 @@
             "stars": "Stars"
         } 
     },
-    "search-field": "Search",
-    "repo-card":{
+    "searchField": "Search",
+    "repositoryCard":{
         "fork": "Fork count",
-        "commit-comments": "Commit comments",
+        "commitComments": "Commit comments",
         "languages": "Languages",
         "repositiories": "Total repositories",
         "stars": "Total stars"
