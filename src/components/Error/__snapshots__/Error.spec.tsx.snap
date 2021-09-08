@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render Error component should render Error component 1`] = `
+<div
+  className="errorWrapper"
+>
+  <WithStyles(ForwardRef(Alert))
+    severity="error"
+  >
+    <WithStyles(ForwardRef(AlertTitle))>
+      error.title
+    </WithStyles(ForwardRef(AlertTitle))>
+    error.text
+  </WithStyles(ForwardRef(Alert))>
+</div>
+`;
