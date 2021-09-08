@@ -3,7 +3,7 @@ import { CircularProgress } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import styles from "./Loading.module.scss";
 
-const LoadingPage: React.FC = () => {
+const Loading: React.FC = () => {
   const [translation] = useTranslation();
 
   return (
@@ -16,4 +16,4 @@ const LoadingPage: React.FC = () => {
   );
 };
 
-export default LoadingPage;
+export default Loading;

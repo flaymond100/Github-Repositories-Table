@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import TablePagination from "@material-ui/core/TablePagination";
 import { useTranslation } from "react-i18next";
-import PagindationProps from "./interface";
+import PaginationProps from "./interface";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const BasicPagination: FC<PagindationProps> = ({
+const BasicPagination: FC<PaginationProps> = ({
   page,
   handlePage,
   rowsPerPage,
@@ -32,13 +32,6 @@ const BasicPagination: FC<PagindationProps> = ({
     handlePage(pageNumber);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    handlePage(0);
-  };
-
   return (
     <div className={classes.root}>
       <TablePagination
@@ -49,7 +42,7 @@ const BasicPagination: FC<PagindationProps> = ({
         page={page}
         onPageChange={handlePageChange}
         rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        onRowsPerPageChange={setRowsPerPage}
       />
     </div>
   );

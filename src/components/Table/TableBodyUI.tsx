@@ -5,19 +5,23 @@ import TableCell from "@material-ui/core/TableCell";
 import { Link } from "react-router-dom";
 import { TableProps } from "./interface";
 
-const TableBodyRender: React.FC<TableProps> = ({ rows, columns }) => {
+const TableBodyUI: React.FC<TableProps> = ({ rows, columns }) => {
   return (
     <TableBody>
       {rows.map((row) => {
         return (
           <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-            {columns.map((column, i) => {
+            {columns.map((column) => {
               const value = row[column.id];
               const newPath = `/${row.owner}/${row.name}`;
 
               return (
                 <TableCell align="center" key={row.id + column.id}>
-                  {i === 0 ? <Link to={newPath}> {value} </Link> : value}
+                  {column.id === "name" ? (
+                    <Link to={newPath}> {value} </Link>
+                  ) : (
+                    value
+                  )}
                 </TableCell>
               );
             })}
@@ -28,4 +32,4 @@ const TableBodyRender: React.FC<TableProps> = ({ rows, columns }) => {
   );
 };
 
-export default TableBodyRender;
+export default TableBodyUI;

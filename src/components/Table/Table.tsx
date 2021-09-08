@@ -9,12 +9,15 @@ import { useLazyQuery } from "@apollo/client";
 import { useTranslation } from "react-i18next";
 import BasicPagination from "../Pagination/Pagination";
 import "../../index.scss";
-import TableBodyRender from "./TableBody";
+import TableBodyUI from "./TableBodyUI";
 import GET_ALL_REPOS from "../../GraphQL/Query/GetAllRepositories";
 import useDebounce from "../../hooks/useDebounce";
-import LoadingPage from "../Loading/Loading";
+import Loading from "../Loading/Loading";
+import Error from "../Error/Error";
 import SearchField from "./SearchField";
 import { ItemsRow, Request, RepositoriesRender } from "./interface";
+import handleTableInfo from "./HandleTableInfo";
+import columns from "./Columns";
 
 const TableBoard: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -25,39 +28,23 @@ const TableBoard: React.FC = () => {
   );
   const [totalRepos, getTotalRepos] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [rows, setRows] = useState([] as Array<ItemsRow>);
   const debouncedValue = useDebounce<string>(searchTerm, 500);
-  const [beforeQuery, setBeforeQuery] = useState<null | string | undefined>(
-    null
-  );
-  const [afterQuery, setAfterQuery] = useState<null | string | undefined>(null);
-  const [searchQuery, setSearchQuery] = useState<string>("is:public");
-
   const [translation] = useTranslation();
-
-  const columns = [
-    { id: "name", label: "Name", align: "center", minWidth: 140 },
-    { id: "owner", label: "Owner", align: "center", minWidth: 100 },
-    { id: "description", label: "Description", align: "center", minWidth: 300 },
-    { id: "lang", label: "Lang", align: "center", minWidth: 170 },
-    { id: "topics", label: "Topics", align: "center", minWidth: 170 },
-    { id: "stars", label: "Stars", align: "center", minWidth: 170 },
-  ];
-
-  const queryRequest: Request = {
+  const [queryRequest, setQueryRequest] = useState<Request>({
     variables: {
-      searchBy: searchQuery,
-      first: rowsPerPage,
-      after: afterQuery,
-      before: beforeQuery,
+      searchBy: "is:public",
+      first: 10,
+      after: null,
+      before: null,
     },
-  };
+  });
+
   const landReq = "table.row.";
 
   useEffect(() => {
     if (data) {
-      handleTableInfo(data);
+      setRows(handleTableInfo(data));
       getTotalRepos(data.search.repositoryCount);
     } else {
       getData(queryRequest);
@@ -68,49 +55,9 @@ const TableBoard: React.FC = () => {
   useEffect(() => {
     if (data) {
       getData(queryRequest);
-      handleTableInfo(data);
+      setRows(handleTableInfo(data));
     }
-  }, [page, debouncedValue, rowsPerPage]);
-
-  const handleTableInfo = (repositioriesData: RepositoriesRender) => {
-    const rowsArr: Array<ItemsRow> = [];
-
-    repositioriesData.search.edges.forEach((element) => {
-      const incomeLanguage = element.node.languages.nodes;
-      const incomeTopic = element.node.repositoryTopics.nodes;
-      const languages: string[] = [];
-      const topics: string[] = [];
-
-      if (
-        Object.keys(incomeLanguage).length > 1 &&
-        Array.isArray(incomeLanguage)
-      ) {
-        incomeLanguage.forEach((lang) => {
-          languages.push(lang.name);
-        });
-      }
-
-      if (Object.keys(incomeTopic).length > 1 && Array.isArray(incomeTopic)) {
-        incomeTopic.forEach((topic) => {
-          topics.push(topic.topic.name);
-        });
-      }
-
-      const row = {
-        name: element.node.name,
-        id: element.node.id,
-        owner: element.node.owner.login,
-        description: element.node.description ? element.node.description : "",
-        lang: languages.join(", "),
-        topics: topics ? topics.join(", ") : "",
-        stars: element.node.stargazers.totalCount,
-      };
-
-      rowsArr.push(row);
-    });
-
-    setRows(rowsArr);
-  };
+  }, [page, debouncedValue, queryRequest.variables.first]);
 
   const handleSearch = (
     id: string,
@@ -118,36 +65,56 @@ const TableBoard: React.FC = () => {
   ) => {
     setSearchTerm(e.target.value);
     setSearchId(id);
-    setSearchQuery(`${e.target.value} in:${id}`);
+    setQueryRequest({
+      variables: {
+        ...queryRequest.variables,
+        searchBy: !e.target.value ? "is:public" : `${e.target.value} in:${id}`,
+      },
+    });
 
     if (!e.target.value) {
       setSearchTerm("");
-      setSearchQuery("is:public");
     }
   };
 
-  const setPageRows = (value: number) => setRowsPerPage(value);
-
+  const setPageRows = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setQueryRequest({
+      variables: {
+        ...queryRequest.variables,
+        first: parseInt(e.target.value, 10),
+        after: null,
+        before: null,
+      },
+    });
+    setPage(0);
+  };
   const handlePage = (value: number) => {
-    setAfterQuery(data?.search.pageInfo.endCursor);
-    setBeforeQuery(null);
-
     if (page > value) {
-      setAfterQuery(null);
-      setBeforeQuery(data?.search.pageInfo.endCursor);
+      setQueryRequest({
+        variables: {
+          ...queryRequest.variables,
+          after: null,
+          before: data?.search.pageInfo.endCursor,
+        },
+      });
+    } else {
+      setQueryRequest({
+        variables: {
+          ...queryRequest.variables,
+          after: data?.search.pageInfo.endCursor,
+          before: null,
+        },
+      });
     }
 
     setPage(value);
   };
 
-  if (loading) return <LoadingPage />;
+  if (loading) return <Loading />;
 
-  if (error)
-    return (
-      <>
-        <span>Error occurs, please reload the page</span>
-      </>
-    );
+  if (error) return <Error />;
 
   return (
     <Paper>
@@ -171,14 +138,14 @@ const TableBoard: React.FC = () => {
               ))}
             </TableRow>
           </TableHead>
-          <TableBodyRender rows={rows} columns={columns} />
+          <TableBodyUI rows={rows} columns={columns} />
         </Table>
       </TableContainer>
       <BasicPagination
         totalRepos={totalRepos}
         handlePage={handlePage}
         setRowsPerPage={setPageRows}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={queryRequest.variables.first}
         page={page}
       />
     </Paper>

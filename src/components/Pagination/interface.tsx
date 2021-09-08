@@ -1,7 +1,11 @@
-export default interface PagindationProps {
+import React from "react";
+
+export default interface PaginationProps {
   page: number;
   handlePage: (arg: number) => void;
   rowsPerPage: number;
-  setRowsPerPage: (arg: number) => void;
+  setRowsPerPage: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   totalRepos: number;
 }

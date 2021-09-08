@@ -11,20 +11,22 @@ const SearchField: FC<SearchFieldProps> = ({
 }) => {
   const [translation] = useTranslation();
 
-  return id === "name" || id === "description" ? (
-    <TextField
-      size="small"
-      id="outlined-search"
-      defaultValue={searchId === id ? searchTerm : ""}
-      label={translation("searchField")}
-      type="search"
-      variant="outlined"
-      onChange={(e) => handleSearch(id, e)}
-      style={{ width: "180px" }}
-    />
-  ) : (
-    <></>
-  );
+  if (id === "name" || id === "description") {
+    return (
+      <TextField
+        size="small"
+        id="outlined-search"
+        defaultValue={searchId === id ? searchTerm : ""}
+        label={translation("searchField")}
+        type="search"
+        variant="outlined"
+        onChange={(e) => handleSearch(id, e)}
+        style={{ width: "180px" }}
+      />
+    );
+  }
+
+  return <> </>;
 };
 
 export default SearchField;

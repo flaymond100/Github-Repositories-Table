@@ -44,16 +44,16 @@ export interface Nodes {
       totalCount: number;
     };
     languages: {
-      nodes: {
+      nodes: Array<{
         name: string;
-      };
+      }>;
     };
     repositoryTopics: {
-      nodes: {
+      nodes: Array<{
         topic: {
           name: string;
         };
-      };
+      }>;
     };
   };
 }

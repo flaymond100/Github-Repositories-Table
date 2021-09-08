@@ -6,6 +6,7 @@ import styles from "./RepositoryPage.module.scss";
 
 const Card: FC<RepositoryData> = ({ data }) => {
   const [translation] = useTranslation();
+  const link = data.repository.url;
 
   return (
     <div className={styles.cardSection}>
@@ -13,7 +14,7 @@ const Card: FC<RepositoryData> = ({ data }) => {
       <p>
         <a href={data.repository.url} target="_blank" rel="noopener noreferrer">
           <img src={githubLogo} alt="" />
-          {data.repository.url.slice(8)}
+          {link.indexOf("https") === -1 ? link.slice(7) : link.slice(8)}
         </a>
       </p>
       <h3>{translation("repositoryCard.fork")}</h3>

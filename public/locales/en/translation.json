@@ -21,5 +21,9 @@
         "repositiories": "Total repositories",
         "stars": "Total stars"
     },
-    "labelRowsPerPage": "Repositories on the page"
+    "labelRowsPerPage": "Repositories on the page",
+    "error":{
+        "title": "Error",
+        "text": "Ups, something went wrong. Try to refresh the page!"
+    }
 }

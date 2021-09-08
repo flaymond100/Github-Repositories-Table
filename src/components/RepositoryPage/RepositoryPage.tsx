@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
 import GET_SINGLE_REPO from "../../GraphQL/Query/GetSingleRepository";
-import LoadingPage from "../Loading/Loading";
+import Loading from "../Loading/Loading";
+import Error from "../Error/Error";
 import styles from "./RepositoryPage.module.scss";
 import { RepoProps, Repository, Variables } from "./interface";
 import Card from "./Card";
@@ -19,14 +20,9 @@ const Repo: React.FC<RepoProps> = ({ match }) => {
     });
   }, []);
 
-  if (loading) return <LoadingPage />;
+  if (loading) return <Loading />;
 
-  if (error)
-    return (
-      <>
-        <span>Error occurs, please reload the page</span>
-      </>
-    );
+  if (error) return <Error />;
 
   return data ? (
     <>
