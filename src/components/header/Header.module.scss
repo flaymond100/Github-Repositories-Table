@@ -1,0 +1,29 @@
+.header {
+  .MuiToolbar {
+    padding: 0 17%;
+    justify-content: space-between;
+  }
+  .MuiPaper-root h6 {
+    text-align: end;
+  }
+  .MuiButton-textSizeLarge {
+    font-size: 20px;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
+.headerBtnName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  button {
+    margin-right: 20px;
+  }
+}
+
+.formControl {
+  margin-right: 30px !important;
+}

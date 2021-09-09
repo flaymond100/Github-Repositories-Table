@@ -1,0 +1,29 @@
+{
+    "title": "Github Table",
+    "homeButton" : "Home",
+    "loading": "Loading...",
+    "languageButton": "RU",
+    "table":{
+        "row":{
+            "name": "Name",
+            "owner": "Owner",
+            "description": "Description",
+            "lang": "Lang",
+            "topics": "Topics",
+            "stars": "Stars"
+        } 
+    },
+    "searchField": "Search",
+    "repositoryCard":{
+        "fork": "Fork count",
+        "commitComments": "Commit comments",
+        "languages": "Languages",
+        "repositiories": "Total repositories",
+        "stars": "Total stars"
+    },
+    "labelRowsPerPage": "Repositories on the page",
+    "error":{
+        "title": "Error",
+        "text": "Ups, something went wrong. Try to refresh the page!"
+    }
+}
