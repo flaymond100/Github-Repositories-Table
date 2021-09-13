@@ -25,6 +25,8 @@ const BasicPagination: FC<PaginationProps> = ({
 
   const [translation] = useTranslation();
 
+  const rowsPerPageOptions = [10, 25, 100];
+
   const handlePageChange = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     pageNumber: number
@@ -36,7 +38,7 @@ const BasicPagination: FC<PaginationProps> = ({
     <div className={classes.root}>
       <TablePagination
         labelRowsPerPage={<p> {translation("labelRowsPerPage")} </p>}
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={rowsPerPageOptions}
         component="div"
         count={totalRepos}
         page={page}
