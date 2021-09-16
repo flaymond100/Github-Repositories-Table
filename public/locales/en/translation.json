@@ -9,7 +9,7 @@
             "owner": "Owner",
             "description": "Description",
             "lang": "Lang",
-            "topics": "Topics",
+            "topic": "Topics",
             "stars": "Stars"
         } 
     },
@@ -25,5 +25,6 @@
     "error":{
         "title": "Error",
         "text": "Ups, something went wrong. Try to refresh the page!"
-    }
+    },
+    "notFound": "Error 404, page is not found"
 }

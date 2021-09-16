@@ -1,35 +1,48 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import githubLogo from "../../assets/github-logo.png";
 import { RepositoryData } from "./interface";
 import styles from "./RepositoryPage.module.scss";
 
-const Card: FC<RepositoryData> = ({ data }) => {
+const Card: FC<RepositoryData> = ({
+  data: {
+    repository: {
+      url,
+      name,
+      forkCount,
+      commitComments,
+      languages,
+      owner,
+      stargazerCount,
+    },
+  },
+}) => {
   const [translation] = useTranslation();
-  const link = data.repository.url;
 
   return (
     <div className={styles.cardSection}>
-      <h3>{data.repository.name}</h3>
-      <p>
-        <a href={data.repository.url} target="_blank" rel="noopener noreferrer">
-          <img src={githubLogo} alt="" />
-          {link.indexOf("https") === -1 ? link.slice(7) : link.slice(8)}
+      <h3 className={styles.cardName}>{name}</h3>
+      <p className={styles.cardUrlLang}>
+        <a
+          className={styles.cardLink}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img className={styles.cardGitLogo} src={githubLogo} alt="" />
+          {url}
         </a>
       </p>
       <h3>{translation("repositoryCard.fork")}</h3>
-      <p>{data.repository.forkCount}</p>
+      <p>{forkCount}</p>
       <h3>{translation("repositoryCard.commitComments")}</h3>
-      <p>{data.repository.commitComments.totalCount}</p>
+      <p>{commitComments.totalCount}</p>
       <h3>{translation("repositoryCard.languages")}</h3>
-      <ul>
-        {data.repository.languages.nodes.length > 0
-          ? data.repository.languages.nodes.map((lang) => {
+      <ul className={styles.cardUrlLang}>
+        {languages.nodes.length > 0
+          ? languages.nodes.map((lang) => {
               return (
-                <li
-                  key={data.repository.name + lang}
-                  style={{ listStyle: "circle" }}
-                >
+                <li key={name + lang} style={{ listStyle: "circle" }}>
                   {lang.name}
                 </li>
               );
@@ -37,9 +50,9 @@ const Card: FC<RepositoryData> = ({ data }) => {
           : "Not mentioned"}
       </ul>
       <h3>{translation("repositoryCard.repositiories")}</h3>
-      <p>{data.repository.owner.repositories.totalCount}</p>
+      <p>{owner.repositories.totalCount}</p>
       <h3>{translation("repositoryCard.stars")}</h3>
-      <p>{data.repository.stargazerCount}</p>
+      <p>{stargazerCount}</p>
     </div>
   );
 };

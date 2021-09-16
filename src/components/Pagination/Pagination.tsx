@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import TablePagination from "@material-ui/core/TablePagination";
 import { useTranslation } from "react-i18next";
@@ -27,12 +27,15 @@ const BasicPagination: FC<PaginationProps> = ({
 
   const rowsPerPageOptions = [10, 25, 100];
 
-  const handlePageChange = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
-    pageNumber: number
-  ) => {
-    handlePage(pageNumber);
-  };
+  const handlePageChange = useCallback(
+    (
+      _event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+      pageNumber: number
+    ) => {
+      handlePage(pageNumber);
+    },
+    [page]
+  );
 
   return (
     <div className={classes.root}>

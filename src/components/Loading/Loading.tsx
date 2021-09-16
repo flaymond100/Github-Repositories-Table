@@ -1,9 +1,9 @@
-import React from "react";
+import { FC } from "react";
 import { CircularProgress } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import styles from "./Loading.module.scss";
 
-const Loading: React.FC = () => {
+const Loading: FC = () => {
   const [translation] = useTranslation();
 
   return (

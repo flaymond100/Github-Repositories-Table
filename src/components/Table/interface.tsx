@@ -1,17 +1,13 @@
 import React from "react";
 
-export interface IColumsKey {
-  [key: string]: string | number;
-}
-
-export interface ItemsRow extends IColumsKey {
+export interface ItemsRow {
   description: string;
   id: string;
   lang: string;
   name: string;
   owner: string;
   stars: number;
-  topics: string;
+  topic: string;
 }
 
 export interface ItemsColumns {
@@ -24,12 +20,20 @@ export interface TableProps {
 }
 
 export interface Request {
-  variables: {
-    searchBy: string;
-    first: number;
-    after: null | string | undefined;
-    before: null | string | undefined;
-  };
+  searchBy: string;
+  first: number;
+  after: null | string | undefined;
+  before: null | string | undefined;
+}
+
+export interface HandleSearchInterface {
+  searchTerm: string;
+  searchId: string;
+  handleSearch: (
+    id: string,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  queryRequest: Request;
 }
 
 export interface Nodes {
@@ -75,6 +79,6 @@ export interface SearchFieldProps {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   id: string;
-  searchId: string;
   searchTerm: string;
+  searchId: string;
 }

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { TextField } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { SearchFieldProps } from "./interface";
@@ -11,7 +11,7 @@ const SearchField: FC<SearchFieldProps> = ({
 }) => {
   const [translation] = useTranslation();
 
-  if (id === "name" || id === "description") {
+  if (id !== "owner" && id !== "stars") {
     return (
       <TextField
         size="small"

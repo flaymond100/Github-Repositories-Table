@@ -1,9 +1,9 @@
-import React from "react";
+import { FC } from "react";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { useTranslation } from "react-i18next";
 import styles from "./Error.module.scss";
 
-const Error: React.FC = () => {
+const Error: FC = () => {
   const [translation] = useTranslation();
 
   return (

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -12,12 +12,11 @@ const Header: FC = () => {
   const [translation, i18n] = useTranslation();
   const [lang, setLang] = useState<string>("ru");
 
-  useEffect(() => {
-    i18n.changeLanguage(lang);
-  }, [lang]);
+  const changeLanguage = (e: React.ChangeEvent<{ value: string }>) => {
+    const currentLanguage = e.target.value;
 
-  const changeLanguage = (e: React.ChangeEvent<{ value: unknown }>) => {
-    setLang(e.target.value as string);
+    setLang(currentLanguage);
+    i18n.changeLanguage(currentLanguage);
   };
 
   return (

@@ -11,10 +11,10 @@ $fontFamily: "Source Sans Pro", "Lucida Grande", sans-serif;
   font-family: $fontFamily;
   flex-direction: column;
   margin: 2% 17%;
-  h2 {
+  .repositoryName {
     margin: 0;
   }
-  p {
+  .repositoryDetails {
     font-family: "Fira Mono", "Andale Mono", "Consolas", monospace;
     margin: 10px 0 10px 0;
   }
@@ -35,7 +35,7 @@ $fontFamily: "Source Sans Pro", "Lucida Grande", sans-serif;
 
 .bodyDescription {
   width: 65%;
-  p {
+  .descriptionText {
     color: #333;
     font-size: 16px;
     line-height: 1.6;
@@ -47,11 +47,8 @@ $fontFamily: "Source Sans Pro", "Lucida Grande", sans-serif;
 }
 
 .bodyUnderline {
-  h2,
-  h3 {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding-bottom: 10px;
-  }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
 }
 
 .cardSection {
@@ -59,16 +56,11 @@ $fontFamily: "Source Sans Pro", "Lucida Grande", sans-serif;
   font-family: $fontFamily;
   width: 300px;
   flex-wrap: wrap;
-  overflow: hidden;
-  h2 {
-    margin: 0;
-  }
-  h3 {
+  .cardName {
     color: #757575;
     font-size: 1rem;
   }
-  p,
-  ul {
+  .cardUrlLang {
     margin: 10px 0 0 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 10px;
@@ -77,13 +69,13 @@ $fontFamily: "Source Sans Pro", "Lucida Grande", sans-serif;
   :last-child {
     border-bottom: 0;
   }
-  a {
+  .cardLink {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
     font-size: 17px;
     color: rgba(0, 0, 0, 0.8);
-    img {
+    .cardGitLogo {
       margin-right: 5px;
       width: 20px;
     }

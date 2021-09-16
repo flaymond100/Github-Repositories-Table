@@ -14,7 +14,6 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@typegoose/typegoose": "^8.1.1",
-    "@types/lodash": "^4.14.172",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.18",
     "@types/react-dom": "^17.0.0",
@@ -22,6 +21,7 @@
     "axios": "^0.21.1",
     "babel-jest": "^26.6.3",
     "babel-preset-env": "^1.7.0",
+    "browserslist": "^4.17.0",
     "class-validator": "^0.13.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
@@ -33,7 +33,6 @@
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.3.0",
     "jest": "^27.1.0",
-    "lodash.merge": "^4.6.2",
     "material-ui-icons": "^1.0.0-beta.36",
     "material-ui-search-bar": "^1.0.0-beta.13",
     "mongoose": "^5.13.7",
@@ -49,29 +48,13 @@
     "web-vitals": "^1.0.1"
   },
   "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "verbose": true,
-    "clearMocks": true,
-    "collectCoverage": true,
-    "setupFilesAfterEnv": [
-      "./config/setupTest.ts"
+    "globalSetup": "./jest.config.ts",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
     ],
-    "snapshotSerializers": [
-      "./node_modules/enzyme-to-json/serializer"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)?$": "ts-jest",
-      "^.+\\.(js|jsx)$": "babel-jest"
-    },
-    "transformIgnorePatterns": [
-      "node_modules/(?!variables/.*)"
-    ],
-    "moduleNameMapper": {
-      "^variables$": "variables/dist/cjs",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./__mocks__/fileMock.ts",
-      "\\.(css|scss)$": "identity-obj-proxy"
-    }
+    "testEnvironment": "node"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -79,24 +62,6 @@
     "build": "babel src -d lib",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
@@ -111,6 +76,7 @@
     "@types/enzyme": "^3.10.9",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.24",
+    "@types/lodash": "^4.14.172",
     "@types/react-test-renderer": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",

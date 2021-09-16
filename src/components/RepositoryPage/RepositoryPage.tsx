@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useLazyQuery } from "@apollo/client";
+import { FC } from "react";
+import { useQuery } from "@apollo/client";
 import GET_SINGLE_REPO from "../../GraphQL/Query/GetSingleRepository";
 import Loading from "../Loading/Loading";
 import Error from "../Error/Error";
@@ -8,17 +8,13 @@ import { RepoProps, Repository, Variables } from "./interface";
 import Card from "./Card";
 import mockData from "./mockData.json";
 
-const Repo: React.FC<RepoProps> = ({ match }) => {
-  const [getRepo, { loading, error, data }] = useLazyQuery<
-    Repository,
-    Variables
-  >(GET_SINGLE_REPO);
-
-  useEffect(() => {
-    getRepo({
-      variables: { name: match.params.id, owner: match.params.owner },
-    });
-  }, []);
+const Repo: FC<RepoProps> = ({ match: { params } }) => {
+  const { loading, error, data } = useQuery<Repository, Variables>(
+    GET_SINGLE_REPO,
+    {
+      variables: { name: params.id, owner: params.owner },
+    }
+  );
 
   if (loading) return <Loading />;
 
@@ -27,9 +23,9 @@ const Repo: React.FC<RepoProps> = ({ match }) => {
   return data ? (
     <>
       <div className={styles.bodyHeader}>
-        <h2>{data.repository.name}</h2>
+        <h2 className={styles.repositoryName}>{data.repository.name}</h2>
         <div className={styles.bodyDetails}>
-          <p>
+          <p className={styles.repositoryDetails}>
             {data.repository.createdAt.slice(0, 10)}&nbsp;•&nbsp;
             {data.repository.isPrivate ? "Not Public" : "Public"}&nbsp;•&nbsp;
             {data.repository.owner.login}
@@ -41,7 +37,9 @@ const Repo: React.FC<RepoProps> = ({ match }) => {
         <div className={styles.bodyDescription}>
           <div className={styles.bodyUnderline}>
             <h1>{data.repository.name}</h1>
-            <p>{data.repository.description}</p>
+            <p className={styles.descriptionText}>
+              {data.repository.description}
+            </p>
           </div>
           <div className={styles.bodyUnderline}>
             <h2>{mockData.header}</h2>

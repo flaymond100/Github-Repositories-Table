@@ -63,9 +63,13 @@ code {
 }
 
 .MuiButton-colorInherit {
-  color: white !important;
+  .MuiButton-label {
+    color: white;
+  }
 }
 
-.MuiTypography-body2 {
-  font-size: 16px !important;
+.MuiTablePagination-toolbar {
+  .MuiTypography-body2 {
+    font-size: 16px;
+  }
 }
