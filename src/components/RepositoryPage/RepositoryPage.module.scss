@@ -1,0 +1,83 @@
+$fontFamily: "Source Sans Pro", "Lucida Grande", sans-serif;
+
+@mixin flexCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bodyHeader {
+  display: flex;
+  font-family: $fontFamily;
+  flex-direction: column;
+  margin: 2% 17%;
+  .repositoryName {
+    margin: 0;
+  }
+  .repositoryDetails {
+    font-family: "Fira Mono", "Andale Mono", "Consolas", monospace;
+    margin: 10px 0 10px 0;
+  }
+}
+
+.bodyDetails {
+  @include flexCenter();
+  border: 3px;
+  border-bottom-style: solid;
+  border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) 3;
+}
+
+.bodyContent {
+  @include flexCenter();
+  font-family: $fontFamily;
+  margin: 2% 17%;
+}
+
+.bodyDescription {
+  width: 65%;
+  .descriptionText {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 16px;
+    line-height: 1.65;
+    letter-spacing: 0.1px;
+  }
+}
+
+.bodyUnderline {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+}
+
+.cardSection {
+  margin-top: 2%;
+  font-family: $fontFamily;
+  width: 300px;
+  flex-wrap: wrap;
+  .cardName {
+    color: #757575;
+    font-size: 1rem;
+  }
+  .cardUrlLang {
+    margin: 10px 0 0 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+    font-weight: 600;
+  }
+  :last-child {
+    border-bottom: 0;
+  }
+  .cardLink {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.8);
+    .cardGitLogo {
+      margin-right: 5px;
+      width: 20px;
+    }
+  }
+}

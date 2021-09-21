@@ -1,0 +1,30 @@
+{
+    "title": "Github Таблица",
+    "homeButton" : "Домой",
+    "loading": "Загрузка...",
+    "languageButton": "ENG",
+    "table":{
+        "row":{
+            "name": "Репозиторий",
+            "owner": "Пользователь",
+            "description": "Описание",
+            "lang": "Язык",
+            "topic": "Топик",
+            "stars": "Звёзды"
+        }
+    },
+    "searchField": "Поиск",
+    "repositoryCard":{
+        "fork": "Ответвлений",
+        "commitComments": "Комментариев коммитов",
+        "languages": "Языки",
+        "repositiories": "Репозитии",
+        "stars": "Звёзд"
+    },
+    "labelRowsPerPage": "Репозиториев на странице",
+    "error":{
+        "title": "Ошибка",
+        "text": "Упс, что-то пошло не так. Попробуйте перезагрузить страницу!"
+    },
+    "notFound": "Ошибка 404, страница не найдена"
+}
